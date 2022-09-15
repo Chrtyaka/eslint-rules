@@ -1,0 +1,15 @@
+{
+  "include": ["./src/*"],
+  "exclude": ["./lib/*"],
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "declaration": true,
+    "declarationMap": true,
+    "outDir": "./lib",
+    "rootDir": "./src",
+    "strict": true,
+    "moduleResolution": "classic",
+    "esModuleInterop": true
+  }
+}
