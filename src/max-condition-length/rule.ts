@@ -1,6 +1,6 @@
 import { Rule } from 'eslint';
 import { report } from '../helpers/report';
-import type { NodeType } from '../types';
+import { NodeType, MaxConditionNode } from '../types';
 import * as EStree from 'estree';
 
 type LogicalExpressionNode = EStree.LogicalExpression;
@@ -23,7 +23,7 @@ function getAllLogicalExpressionCount(node: LogicalExpressionNode): number {
   return expressionCount + 1;
 }
 
-function checkConditionCount(node: NodeType): boolean {
+function checkConditionCount(node: NodeType<MaxConditionNode>): boolean {
   let expressions: number = 0;
 
   if (node.type === 'IfStatement') {
@@ -41,7 +41,7 @@ function checkConditionCount(node: NodeType): boolean {
   return expressions <= 2;
 }
 
-function checkStatement(context: Rule.RuleContext, node: NodeType) {
+function checkStatement(context: Rule.RuleContext, node: NodeType<MaxConditionNode>) {
   const isValid = checkConditionCount(node);
 
   if (!isValid) {
