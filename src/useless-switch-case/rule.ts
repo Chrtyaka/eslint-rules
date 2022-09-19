@@ -34,6 +34,11 @@ function setupRule(context: Rule.RuleContext): Rule.RuleListener {
 const rule: Rule.RuleModule = {
   meta: {
     type: 'problem',
+    docs: {
+      description:
+        'Avoid useless switch cases. You can replace it by if/else or maps',
+      recommended: true,
+    },
   },
   create: setupRule,
 };
