@@ -5,9 +5,15 @@ import { report } from '../helpers/report';
 function getEmptyCasesPercent(node: NodeType<UselessSwitchCaseNode>): number {
   const { cases } = node;
 
-  const emptyCases = cases.filter((item) => item.consequent.length).length;
+  const emptyCases = cases.filter(
+    (item) => item.consequent.length === 0,
+  ).length;
 
-  const emptyCasesPercent = (cases.length / emptyCases) * 100;
+  if (emptyCases === 0) {
+    return 0;
+  }
+
+  const emptyCasesPercent = Math.round((emptyCases / cases.length) * 100);
 
   return emptyCasesPercent;
 }
@@ -16,9 +22,11 @@ function checkStatement(
   context: Rule.RuleContext,
   node: NodeType<UselessSwitchCaseNode>,
 ) {
+  const threshold = context.options[0]?.threshold ?? 50;
+
   const percent = getEmptyCasesPercent(node);
 
-  const isValid = percent > 50;
+  const isValid = percent <= threshold;
 
   if (!isValid) {
     report(context, node);
@@ -39,6 +47,17 @@ const rule: Rule.RuleModule = {
         'Avoid useless switch cases. You can replace it by if/else or maps',
       recommended: true,
     },
+    schema: [
+      {
+        type: 'object',
+        properties: {
+          threshold: {
+            type: 'number',
+            default: 50,
+          },
+        },
+      },
+    ],
   },
   create: setupRule,
 };
