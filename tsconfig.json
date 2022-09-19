@@ -1,6 +1,6 @@
 {
   "include": ["./src/*"],
-  "exclude": ["./lib/*"],
+  "exclude": ["./lib/*", "**/*.spec.ts", "node_modules"],
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
@@ -9,7 +9,7 @@
     "outDir": "./lib",
     "rootDir": "./src",
     "strict": true,
-    "moduleResolution": "classic",
+    "moduleResolution": "Node",
     "esModuleInterop": true
   }
 }

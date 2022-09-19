@@ -4,6 +4,9 @@
   "description": "Custom eslint plugins",
   "main": "lib/index.js",
   "scripts": {
+    "build": "tsc",
+    "prettier": "prettier",
+    "prettier:fix": "prettier --fix",
     "test": "jest"
   },
   "keywords": [
