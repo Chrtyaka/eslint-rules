@@ -41,7 +41,10 @@ function checkConditionCount(node: NodeType<MaxConditionNode>): boolean {
   return expressions <= 2;
 }
 
-function checkStatement(context: Rule.RuleContext, node: NodeType<MaxConditionNode>) {
+function checkStatement(
+  context: Rule.RuleContext,
+  node: NodeType<MaxConditionNode>,
+) {
   const isValid = checkConditionCount(node);
 
   if (!isValid) {
@@ -56,11 +59,11 @@ function setupRule(context: Rule.RuleContext): Rule.RuleListener {
   };
 }
 
-const rule: Rule.RuleModule = {
+const maxConditionLength: Rule.RuleModule = {
   meta: {
     type: 'problem',
   },
   create: setupRule,
 };
 
-export { rule };
+export { maxConditionLength };

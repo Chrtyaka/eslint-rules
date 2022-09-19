@@ -1,10 +1,10 @@
 import { RuleTester } from 'eslint';
 
-import { rule } from './rule';
+import { maxConditionLength } from './rule';
 
 const tester = new RuleTester({ parserOptions: { ecmaVersion: 2022 } });
 
-tester.run('max-condition-length -- IfStatement', rule, {
+tester.run('max-condition-length -- IfStatement', maxConditionLength, {
   valid: [{ code: `if(this.logic1 || this.logic2) {}` }],
   invalid: [
     {
@@ -18,7 +18,7 @@ tester.run('max-condition-length -- IfStatement', rule, {
   ],
 });
 
-tester.run('max-condition-length -- ReturnStatement', rule, {
+tester.run('max-condition-length -- ReturnStatement', maxConditionLength, {
   valid: [
     {
       code: `function someFunction() {
@@ -40,8 +40,7 @@ tester.run('max-condition-length -- ReturnStatement', rule, {
   ],
 });
 
-
-tester.run('max-condition-length -- ReturnStatement', rule, {
+tester.run('max-condition-length -- ReturnStatement', maxConditionLength, {
   valid: [
     {
       code: `function someFunction() {

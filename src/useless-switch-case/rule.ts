@@ -39,7 +39,7 @@ function setupRule(context: Rule.RuleContext): Rule.RuleListener {
   };
 }
 
-const rule: Rule.RuleModule = {
+const uselessSwitchCases: Rule.RuleModule = {
   meta: {
     type: 'problem',
     docs: {
@@ -62,4 +62,4 @@ const rule: Rule.RuleModule = {
   create: setupRule,
 };
 
-export { rule };
+export { uselessSwitchCases };

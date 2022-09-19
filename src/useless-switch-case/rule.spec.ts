@@ -1,6 +1,6 @@
 import { RuleTester } from 'eslint';
 
-import { rule } from './rule';
+import { uselessSwitchCases } from './rule';
 import { MESSAGES } from '../constants/report-messages';
 
 const tester = new RuleTester({ parserOptions: { ecmaVersion: 2022 } });
@@ -63,7 +63,7 @@ function switchCase(){
 }
 `;
 
-tester.run('useless switch cases', rule, {
+tester.run('useless switch cases', uselessSwitchCases, {
   valid: [validCode],
   invalid: [
     {
@@ -77,7 +77,7 @@ tester.run('useless switch cases', rule, {
   ],
 });
 
-tester.run('useless switch cases with threshold', rule, {
+tester.run('useless switch cases with threshold', uselessSwitchCases, {
   valid: [
     {
       code: validCodeWithThreshold,
