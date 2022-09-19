@@ -1,2 +1,9 @@
-import { rule } from './useless-switch-case/rule';
-import { rule } from './max-condition-length/rule';
+import { uselessSwitchCases } from './useless-switch-case/rule';
+import { maxConditionLength } from './max-condition-length/rule';
+
+export default {
+  rules: {
+    'useless-switch-cases': uselessSwitchCases,
+    'max-condition-length': maxConditionLength,
+  },
+};
