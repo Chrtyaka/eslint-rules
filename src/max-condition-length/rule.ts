@@ -1,10 +1,9 @@
 import { Rule } from 'eslint';
+import { report } from '../helpers/report';
+import type { NodeType } from '../types';
 import * as EStree from 'estree';
 
 type LogicalExpressionNode = EStree.LogicalExpression;
-
-type NodeType = (EStree.ReturnStatement | EStree.IfStatement) &
-  Rule.NodeParentExtension;
 
 function getAllLogicalExpressionCount(node: LogicalExpressionNode): number {
   let expressionCount = 0;
@@ -48,16 +47,6 @@ function checkStatement(context: Rule.RuleContext, node: NodeType) {
   if (!isValid) {
     report(context, node);
   }
-}
-
-function report(context: Rule.RuleContext, node: NodeType) {
-  context.report({
-    message: 'Avoid multiple logical expression in {{ identifier }}',
-    node,
-    data: {
-      identifier: node.type,
-    },
-  });
 }
 
 function setupRule(context: Rule.RuleContext): Rule.RuleListener {
